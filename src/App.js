@@ -71,9 +71,9 @@ class Game extends React.Component {
           }
           var unicorn = {
                height:10,
-               position:2
+               position:1
           }
-          var flowers = [
+          /*var flowers = [
                {position:3, height: 5, upright:false},
                {position:5, height: 8, upright:true},
                {position:7, height: 6, upright:false},
@@ -81,16 +81,23 @@ class Game extends React.Component {
                {position:11, height: 2, upright:false},
                {position:13, height: 10, upright:true},
           ]
+          */
+          /*The position of the unicorn.*/
           grid[unicorn.height][unicorn.position] = 'white'
 
-          this.state = {grid:grid,unicorn:unicorn,flowers:flowers}
+          this.state = {grid:grid,unicorn:unicorn}/*,flowers:flowers}*/
 
+          /* Uses callback funcion, the (), and it's set at 200ms. */
           this.timerID = setInterval(()=>{
                var gridCopy = []
-               /* May need to actually map this, instead of using this simple grid.*/
+               for(let i = 0; i < 60; i++){
+                    gridCopy.push(new Array(60).fill('purple'))
+               }
+
+               /* May need to actually map this, instead of using this simple grid.
                var flowersCopy = this.state.flowers.slice()
                for(let i = 0; i < 25; i++) {
-                    /*Creates a 30 by 30 grid that covers the viewport.*/
+                    /*Creates a 30 by 30 grid that covers the viewport.
                     gridCopy.push(new Array(60).fill('purple'))
                }
 
@@ -110,26 +117,30 @@ class Game extends React.Component {
                               gridCopy[j][(flowersCopy[a].position)] = 'green'
                     }
                }
-               
+               */
 
                var unicornCopy =  this.state.unicorn
                unicornCopy.height++
-               if(unicornCopy.height > 24 || unicornCopy.height < 1){
-                    unicornCopy.height = 11           
+              
+               if(unicornCopy.height > 49 || unicornCopy.height < 0){
+                    unicornCopy.height = 10           
                }
                gridCopy[unicornCopy.height][unicornCopy.position] = 'white'
-               
 
-               this.setState({gird:gridCopy,unicorn:unicornCopy,flowers:flowersCopy})
-          },200)
+               this.setState({gird:gridCopy,unicorn:unicornCopy})/*,flowers:flowersCopy})*/
+          },200);
      }
 
      render(){
           /* Pass the props, aka state, to the Grid*/
           return (
-               //<div>
-                    <Grid grid = {this.state.grid}/>
-               //</div>
+               <section>
+                    "This tutorial is using depricated functions (i.e. super(props)),
+                    and as of 8/2018 I am unaware of how to update it."
+                    <div>
+                         <Grid grid = {this.state.grid}/>
+                    </div>
+               </section>
           )
      }
 
